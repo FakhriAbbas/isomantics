@@ -11,11 +11,15 @@ from urllib.parse import urlencode
 import urllib
 import json
     
-def translate(text, from_lang, to_lang):
+def translate(source_text, from_lang, to_lang):
+    """
     # taken and modified from 
     # http://codegist.net/snippet/python/google-translatepy_lotabout_python
-
-    
+    Keyword arguments:
+    to_lang -- The language code for the source text argument
+    from_lang -- The language code for the translated language
+    source_text -- Text to be translated
+    """
     
     url = 'https://translate.googleapis.com/translate_a/single?'
  
@@ -28,7 +32,7 @@ def translate(text, from_lang, to_lang):
     params.append('dt=bd')
     params.append('dj=1')
     params.append('source=input')
-    params.append(urlencode({'q': text}))
+    params.append(urlencode({'q': source_text}))
     url += '&'.join(params)
  
     request = urllib.request.Request(url)

@@ -17,8 +17,27 @@ class TestingGoogleTranslateAPI(unittest.TestCase):
       Test single word tranlsation
       'car' tranlsatoion is 'Auto' in German
       """
-      translation = translate('en','de','car')
+      translation = translate('car' , 'en' , 'de')
       self.assertEqual( translation, 'Auto')      
+
+      translation = translate("собака" , 'ru','en')
+      self.assertEqual( translation, 'dog')      
+
+      translation = translate( "laptop" , 'en' , 'zh-CN') 
+      self.assertEqual( translation, '笔记本电脑')      
+
+      translation = translate('dog' , 'en' , 'de' )
+      self.assertEqual( translation, 'Hund')      
+
+      translation = translate('Hund' , 'de' , 'en' )
+      self.assertEqual( translation, 'dog')      
+
+      translation = translate('ذهب' , 'ar' , 'en' )
+      self.assertEqual( translation, 'Go')      
+
+      translation = translate('go' , 'en' , 'he' )
+      self.assertEqual( translation, 'ללכת')      
+
 
   def test_bidirectional(self):
       """
@@ -31,11 +50,11 @@ class TestingGoogleTranslateAPI(unittest.TestCase):
       
       """
       word_en = 'car'
-      false_case = is_bidirection_translation('en','de',word_en)
+      false_case = is_bidirection_translation(word_en , 'en','de')
       self.assertFalse( false_case )
       
       word_en = 'dog'
-      true_case = is_bidirection_translation('en','de',word_en)
+      true_case = is_bidirection_translation(word_en , 'en','de')
       self.assertTrue( true_case )
 
       
